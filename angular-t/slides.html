@@ -1,0 +1,16 @@
+<div id="slides-view">
+	<!-- <h1 ng-bind="metaInfo.MAIN_TITLE"></h1> -->
+	<div class="left-panel tf-trans">
+		<div class="contents-outline"  ng-include="'contentsTpl'" ng-init="contents = metaInfo.contents"></div>
+	</div>
+
+	<div class="main-content tf-trans" ng-include="slideTpl"></div>
+
+	<div class="aside">
+		<button class="btn" ng-bind="currentSlideId" ng-disabled="true"></button>
+		<div class="progress progress-striped active"><div class="progress-bar" role="progressbar" aria-valuenow="{{(currentSlideId+1)/slideTotal*100}}" aria-valuemin="0" aria-valuemax="100" style="width: {{(currentSlideId+1)/slideTotal*100}}%"></div></div>
+		<button class="btn btn-primary tf-trans glyphicon glyphicon-chevron-right" ng-click="nextSlide()" ng-show="currentSlideId < (metaInfo.slideTotal-1)"></button>
+		<button class="btn btn-primary tf-trans glyphicon glyphicon-chevron-left" ng-click="prevSlide()" ng-show="currentSlideId > 0"></button>
+		<button class="btn btn-success tf-trans glyphicon glyphicon-home" ng-click="switchView()"></button>
+	</div>
+</div>

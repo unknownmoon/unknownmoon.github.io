@@ -1,0 +1,7 @@
+<div id="landing-view">
+	<h1 class="main-title" ng-bind="metaInfo.MAIN_TITLE"></h1>
+	<div class="main-content">
+		<div class="contents-outline"  ng-include="'contentsTpl'" ng-init="contents = metaInfo.contents"></div>
+	</div>
+	<h2 class="siganiture">by {{metaInfo.AUTHOR || '...'}}</h2>
+</div>

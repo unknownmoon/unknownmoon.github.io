@@ -1,0 +1,138 @@
+<div ng-controller="Slide2Ctrl">
+	<h2 class="title ng-bind:slide.title"></h2>
+
+	<div class="main-content">
+		<dl>
+			<dt>Use expression inside <code>{{ }}</code> or with <code>ng-bind</code> series directives <span class="clickable glyphicon glyphicon-eye-open" ng-show="displayS1" ng-click="displayS1=!displayS1;"></span><span class="clickable glyphicon glyphicon-eye-close" ng-hide="displayS1" ng-click="displayS1=!displayS1;"></span></dt>
+			<dd>This is the most common used scenario, since simple data-binding is also Angular expression.</dd>
+			<dd ng-show="displayS1"><pre class="prettyprint linenums" ng-set-text="s1"></pre></dd>
+
+			<dt>Use expression with directives citing string as their inputs, such as <code>ng-include</code></dt>
+			<dd>
+				<div><span class="glyphicon glyphicon-warning-sign"></span> Bare in mind that the syntax of <code>ng-include</code> is <code>ng-include="{string}"</code>, hence the result of the expression should be string.</div>
+				<ul class="clear-list-style">
+					<li><span class="glyphicon glyphicon-remove"></span> <code>&lt;div ng-include="path/to/template/template.html" &gt;&lt;/div&gt;</code></li>
+					<li><span class="glyphicon glyphicon-ok"></span> <code>&lt;div ng-include=" 'path/to/template/template.html' " &gt;&lt;/div&gt;</code></li>
+				</ul>
+			</dd>
+
+			<dt>Use expression with <code>ng-repeat</code> to render array or object. <span class="clickable glyphicon glyphicon-eye-open" ng-show="displayS2" ng-click="displayS2=!displayS2;"></span><span class="clickable glyphicon glyphicon-eye-close" ng-hide="displayS2" ng-click="displayS2=!displayS2;"></span></dt>
+			<dd ng-show="displayS2">
+				<h4>HTML</h4>
+				<pre class="prettyprint linenums" ng-set-text="s4h"></pre>
+				<h4>Javascript</h4>
+				<pre class="prettyprint linenums" ng-set-text="s4j"></pre>
+				<h4>Demo</h4>
+				<div class="result">
+					<div ng-embed-app ng-set-html="s4h" ng-eval-javascript="s4j"></div>
+				</div>
+			</dd>
+
+			<dt>Use expression in <code>$scope.$watch()</code> <span class="clickable glyphicon glyphicon-eye-open" ng-show="displayS5" ng-click="displayS5=!displayS5;"></span><span class="clickable glyphicon glyphicon-eye-close" ng-hide="displayS5" ng-click="displayS5=!displayS5;"></span></dt>
+			<dd>This will be covered in the next section.</dd>
+			<dd ng-show="displayS5">
+				<pre class="prettyprint linenums" ng-set-text="s5"></pre>
+			</dd>
+
+			<dt>Use expression with <code>ng-show</code>/<code>ng-hide</code> directive. <span class="clickable glyphicon glyphicon-eye-open" ng-show="displayS3" ng-click="displayS3=!displayS3;"></span><span class="clickable glyphicon glyphicon-eye-close" ng-hide="displayS3" ng-click="displayS3=!displayS3;"></span></dt>
+			<dd>For when you want to show/hide some elements in you page based on certain conditions, you can use these two ones.</dd>
+			<dd ng-show="displayS3"><pre class="prettyprint linenums" ng-set-text="s2"></pre></dd>
+
+			<dt>Use expression for simplifying form validation <span class="clickable glyphicon glyphicon-eye-open" ng-show="displayS4" ng-click="displayS4=!displayS4;"></span><span class="clickable glyphicon glyphicon-eye-close" ng-hide="displayS4" ng-click="displayS4=!displayS4;"></span></dt>
+			<dd>By using <code>ng-show</code>/<code>ng-hide</code> along with directive <a href="http://code.angularjs.org/1.0.7/docs/api/ng.directive:form" target="_blank"><code title="(AngularJS provide form directive as an element, so it override original form tag)">form</code></a>, form validation becomes easier.</dd>
+
+			<dd ng-show="displayS4">
+				<h4>HTML</h4>
+				<pre class="prettyprint linenums" ng-set-text="s3h"></pre>
+				<h4>Javascript</h4>
+				<pre class="prettyprint linenums" ng-set-text="s3j"></pre>
+				<h4>Demo</h4>
+				<div class="result">
+					<div ng-embed-app ng-set-html="s3h" ng-eval-javascript="s3j"></div>
+				</div>
+			</dd>
+
+			<dt>Use expression in <code>ng-class</code> directive.</dt>
+			<dd>We've seen it. <span class="glyphicon glyphicon-fast-backward clickable" ng-click="switchView('slides/0')"></span></dd>
+
+		</dl>
+
+
+		<div class="embeded-code-snippet">
+			<div id="s1">
+				<div>{{ expression }}</div>
+				<div ng-bind="expression"></div>
+				<div class="ng-bind:expression"></div>
+				<div ng-bind-html="expression"></div>
+				<div ng-bind-html-unsafe="expression"></div>
+				<div ng-bind-template="{{salutation}} {{name}}"></div>
+			</div>
+
+			<div id="s2">
+				<div ng-show="expression"></div>
+				<div ng-hide="expression"></div>
+				<div ng-show="expression0 || expresison1"></div>
+			</div>
+
+			<div id="s3h">
+				<form name="myForm" ng-controller="demo3Ctrl">
+					Single word: <input type="text" name="input" ng-model="text" ng-pattern="word" required>
+					<span class="error" ng-show="myForm.input.$error.required">
+					Required!</span>
+					<span class="error" ng-show="myForm.input.$error.pattern">
+					Single word only!</span>
+
+					<br/>
+					<tt>text = {{text}}</tt><br/>
+					<tt>myForm.input.$valid = {{myForm.input.$valid}}</tt><br/>
+					<tt>myForm.input.$error = {{myForm.input.$error}}</tt><br/>
+					<tt>myForm.$valid = {{myForm.$valid}}</tt><br/>
+					<tt>myForm.$error = {{myForm.$error}}</tt><br/>
+					<tt>myForm.$error.required = {{!!myForm.$error.required}}</tt><br/>
+				</form>
+			</div>
+
+			<div id="s3j">
+				function demo3Ctrl($scope) {
+					$scope.text = 'guest';
+					$scope.word = /^\w*$/;
+				}
+			</div>
+
+			<div id="s4h">
+				<div ng-controller="demo4Ctrl">
+					<ul ng-repeat="elem in demoArr">
+						<li ng-bind="elem.title"></li>
+						<li ng-bind="elem.content"></li>
+					</ul>
+				</div>
+			</div>
+
+			<div id="s4j">
+				function demo4Ctrl($scope) {
+					$scope.demoArr = [{
+						"title": "Demo Title 0",
+						"content": "Demo Content 0"
+					},{
+						"title": "Demo Title 1",
+						"content": "Demo Content 1"
+					},{
+						"title": "Demo Title 2",
+						"content": "Demo Content 2"
+					}];
+				}
+			</div>
+
+			<div id="s5">
+				function demo5Ctrl($scope) {
+					$scope.$watch('expression', function(newValue, oldValue){
+						// business logic here
+					});
+				}
+			</div>
+
+		</div>
+
+
+	</div>
+</div>

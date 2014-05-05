@@ -1,0 +1,71 @@
+<div ng-controller="Slide0Ctrl">
+	<h2 class="title" ng-bind="slide.title"></h2>
+	<div class="main-content">
+		<p>Expressions are JavaScript-like code snippets that are usually placed in bindings such as <code>{{
+expression }}</code>. Expressions are processed by the <a href="http://docs.angularjs.org/api/ng.$parse" target="_blank">$parse</a>
+service. Expressions are often post processed using <a href="http://docs.angularjs.org/guide/filter" target="_blank">filters</a> <span class="clickable glyphicon glyphicon-info-sign" ng-click="displayFilter=!displayFilter;"></span> to create a more user-friendly format.</p>
+		<p ng-show="displayFilter">For using <a href="http://docs.angularjs.org/guide/filter" target="_blank">filters</a> &lt;to be covered later&gt;, you can use binding such as <code>{{ expression | filter }}</code> to pass the result of your expression to a filter; or use <code>{{ expression | filter1 | filter2 | ... }}</code> to pipe the filters; even pass arguments to filter by using <code>{{ expression | filter:argument1:argument2:... }}</code></p>
+
+		<hr />
+
+		<h4>Html <span class="clickable glyphicon glyphicon-eye-open" ng-show="displayHTML0" ng-click="displayHTML0=!displayHTML0;"></span><span class="clickable glyphicon glyphicon-eye-close" ng-hide="displayHTML0" ng-click="displayHTML0=!displayHTML0;"></span></h4>
+		<pre class="prettyprint linenums" ng-set-text="expression0" ng-show="displayHTML0"></pre>
+
+		<h4>Javascript <span class="clickable glyphicon glyphicon-eye-open" ng-show="displayJS0" ng-click="displayJS0=!displayJS0;"></span><span class="clickable glyphicon glyphicon-eye-close" ng-hide="displayJS0" ng-click="displayJS0=!displayJS0;"></span></h4>
+		<pre class="prettyprint linenums" ng-set-text="js0" ng-show="displayJS0"></pre>
+
+		<h4>Result HTML <span class="clickable glyphicon glyphicon-eye-open" ng-show="displayRHTML0" ng-click="displayRHTML0=!displayRHTML0;"></span><span class="clickable glyphicon glyphicon-eye-close" ng-hide="displayRHTML0" ng-click="displayRHTML0=!displayRHTML0;"></span> <span class="clickable glyphicon glyphicon-zoom-in" ng-click="displayQ0=!displayQ0;"></span></h4>
+		<pre class="prettyprint linenums" ng-set-text="result0" ng-show="displayRHTML0"></pre>
+
+		<p class="tf-trans" ng-show="displayQ0">The appearance of <a href="http://docs.angularjs.org/guide/dev_guide.templates.css-styling" title="Usage: angular applies this class to any element that is attached to a data binding, via ng-bind or curly braces, for example. (see databinding guide)" target="_blank">ng-binding</a> class might lead us a way to improve application performance.</p>
+
+		<h4>Result <span class="clickable glyphicon glyphicon-eye-open" ng-hide="displayR0" ng-click="displayR0=!displayR0;"></span><span class="clickable glyphicon glyphicon-eye-close" ng-show="displayR0" ng-click="displayR0=!displayR0;"></span></h4>
+
+		<div class="result" ng-hide="displayR0">
+			<div ng-embed-app ng-set-html="expression0" ng-eval-javascript="js0"></div>
+		</div>
+
+		<div class="embeded-code-snippet">
+			<div id="expression0" ng-hide="displayR0">
+				<div ng-controller="expres0Ctrl">
+					<div class="{{ testClass0 }} test-class">1 + 2 = {{ 1+2 }}</div>
+					<div class="{{ classPrefix + 0 }}">1 + 2 = {{ 1+2 }}</div>
+					<div class="{{ classPrefix + 0 }}">{{ '1 + 2 = ' + (1+2) }}</div>
+
+					<div ng-bind="'1 + 2 = ' + (1+2)"></div>
+					<div>{{ '1 + 2 = ' + (1+2) }}</div>
+					<div class="test-class">{{ '1 + 2 = ' + (1+2) }}</div>
+
+					<!-- We'll back to here -->
+					<div class="test-class" ng-class="{testClass0: testClass0!=undefined}">{{ '1 + 2 = ' + (1+2) }}</div>
+					<div class="test-class" ng-class="{testClass0: testClass0=='test-class-0'}">1 + 2 = {{1+2}}</div>
+					<div class="test-class" ng-class="{ true: 'complete' } [testClass0 != 0]">{{ '1 + 2 = ' + (1+2) }}</div>
+				</div>
+			</div>
+			<script id="js0">
+				function expres0Ctrl ($scope) {
+					$scope.testClass0 = "test-class-0";
+					$scope.classPrefix = "test-class-";
+				}
+			</script>
+
+			<div id="result0">
+				<div ng-controller="expres0Ctrl" class="ng-scope">
+					<div class="test-class-0 test-class">1 + 2 = 3</div>
+					<div class="test-class-0">1 + 2 = 3</div>
+					<div class="test-class-0">1 + 2 = 3</div>
+
+					<div ng-bind="'1 + 2 = ' + (1+2)" class="ng-binding">1 + 2 = 3</div>
+					<div class="ng-binding">1 + 2 = 3</div>
+					<div class="test-class ng-binding">1 + 2 = 3</div>
+
+					<!-- We'll back to here -->
+					<div class="test-class ng-binding testClass0" ng-class="{testClass0: testClass0!=undefined}">1 + 2 = 3</div>
+					<div class="test-class ng-binding testClass0" ng-class="{testClass0: testClass0=='test-class-0'}">1 + 2 = 3</div>
+					<div class="test-class ng-binding complete" ng-class="{ true: 'complete' } [testClass0 != 0]">1 + 2 = 3</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

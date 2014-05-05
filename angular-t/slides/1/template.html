@@ -1,0 +1,75 @@
+<div ng-controller="Slide1Ctrl">
+	<h2 class="title" ng-bind="slide.title"></h2>
+	<div class="main-content">
+		<p>It might be tempting to think of Angular view expressions as JavaScript expressions, but that is not entirely correct, since Angular does not use a JavaScript <code>eval()</code> to evaluate expressions. You can think of Angular expressions as JavaScript expressions with following differences:</p>
+		<dl>
+			<dt>Attribute Evaluation: <span class="clickable glyphicon glyphicon-eye-open" ng-show="displayP1" ng-click="displayP1=!displayP1;"></span><span class="clickable glyphicon glyphicon-eye-close" ng-hide="displayP1" ng-click="displayP1=!displayP1;"></span></dt>
+			<dd ng-show="displayP1">evaluation of all properties are against the scope, doing the evaluation, unlike in JavaScript where the expressions are evaluated against the global window. That is, JS scope chain vs. Angular $scope chain (<code>$scope.$parent</code> / <code>$rootScope</code>).</dd>
+
+			<dt>Forgiving: <span class="clickable glyphicon glyphicon-eye-open" ng-show="displayP2" ng-click="displayP2=!displayP2;"></span><span class="clickable glyphicon glyphicon-eye-close" ng-hide="displayP2" ng-click="displayP2=!displayP2;"></span></dt>
+			<dd ng-show="displayP2">expression evaluation is forgiving to <code>undefined</code> and <code>null</code>, unlike in JavaScript, where trying to evaluate undefined properties can generate ReferenceError or TypeError.</dd>
+
+			<dt>No Control Flow Statements: <span class="clickable glyphicon glyphicon-eye-open" ng-show="displayP3" ng-click="displayP3=!displayP3;"></span><span class="clickable glyphicon glyphicon-eye-close" ng-hide="displayP3" ng-click="displayP3=!displayP3;"></span> <span class="clickable glyphicon glyphicon-info-sign" ng-click="displayP5=!displayP5;"></span></dt>
+			<dd ng-show="displayP3">you cannot do any of the following in angular expression: conditionals, loops, or throw.</dd>
+			<dd ng-show="displayP5">You can do simple math <code>(+, -, /, *, %)</code>, make comparisons <code title="No '===', only ''==0, null==undefined">(==, !=, >, <, >=, <=)</code>, perform boolean logic <code>(&&, ||, !)</code> and bitwise operations <code>(^, &, |)</code>. You can call functions you expose on <code>$scope</code> in your controller and you can reference arrays and object notation <code>([], {}, .)</code></dd>
+		</dl>
+
+		<!-- <div class="clickable glyphicon glyphicon-info-sign" ng-click="displayP4=!displayP4;"></div> -->
+		<!-- <p ng-show="displayP4"> -->
+		<p>If, on the other hand, you do want to run arbitrary JavaScript code, you should make it a controller method and call the method. If you want to <code>eval()</code> an angular expression from JavaScript, use the <a href="http://docs.angularjs.org/api/ng.$rootScope.Scope#methods_$eval" target="_blank"><code>$eval()</code></a> method.</p>
+
+		<hr />
+
+		<h4>Html <span class="clickable glyphicon glyphicon-eye-open" ng-show="displayHTML1" ng-click="displayHTML1=!displayHTML1;"></span><span class="clickable glyphicon glyphicon-eye-close" ng-hide="displayHTML1" ng-click="displayHTML1=!displayHTML1;"></span></h4>
+		<pre class="prettyprint linenums" ng-set-text="expression1" ng-show="displayHTML1"></pre>
+
+		<h4>Javascript <span class="clickable glyphicon glyphicon-eye-open" ng-show="displayJS1" ng-click="displayJS1=!displayJS1;"></span><span class="clickable glyphicon glyphicon-eye-close" ng-hide="displayJS1" ng-click="displayJS1=!displayJS1;"></span></h4>
+		<pre class="prettyprint linenums" ng-set-text="js1" ng-show="displayJS1"></pre>
+
+		<h4>Demo <span class="clickable glyphicon glyphicon-eye-open" ng-show="displayD1" ng-click="displayD1=!displayD1;"></span><span class="clickable glyphicon glyphicon-eye-close" ng-hide="displayD1" ng-click="displayD1=!displayD1;"></span></h4>
+
+		<div class="result" ng-show="displayD1">
+			<div ng-embed-app ng-set-html="expression1" ng-eval-javascript="js1"></div>
+		</div>
+
+		<div class="embeded-code-snippet">
+			<div id="expression1">
+				<div ng-controller="expres1Ctrl">
+					<span>Expression:</span>
+					<input type='text' ng-model="expr" size="60"/>
+					<button ng-click="addExp(expr)">Evaluate</button>
+					<button ng-click="removeAllExp()">Clear</button>
+					<ul>
+						<li ng-repeat="expr in exprs">
+							[ <a href="" ng-click="removeExp($index)">X</a> ]
+							<code>{{expr}}</code> => <span ng-bind="$eval(expr)"></span>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<script id="js1">
+				function expres1Ctrl ($scope) {
+					var exprs = $scope.exprs = [];
+
+					$scope.thisScope = $scope;
+					$scope.expr = '3*10|currency';
+					$scope.addExp = function(expr) {
+						exprs.push(expr);
+					};
+
+					$scope.removeExp = function(index) {
+						exprs.splice(index, 1);
+					};
+
+					$scope.removeAllExp = function() {
+						exprs = $scope.exprs = [];
+					};
+
+					$scope.tx = {a:"test", b:"val"};
+				}
+			</script>
+		</div>
+
+	</div>
+</div>
