@@ -28,61 +28,9 @@
   </ul>
   <p><!-- this is for adding the further content --></p>
 
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 
-  <script type="text/javascript" charset="utf-8">
-  //<!--
-  var jQueryObj = document.createElement("script");
-  var bodyObj = document.body;
-
-  jQueryObj.setAttribute("src", "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js");
-  jQueryObj.onload = function(evt) {
-    console.log("after loading jQuery");
-    var pObj = document.getElementsByTagName("p");
-    var lastPObj = pObj.length > 0 ? pObj[pObj.length - 1] : null;
-
-    var insertObj = document.createElement("p");
-    // insertObj.innerHTML = "Well, now we have jQuery from Google hosted libraries :)";
-
-    var insertLoc = lastPObj === null ? document.body.appendChild(insertObj) : document.body.insertBefore(insertObj, lastPObj.nextSibling);
-
-    /*load libraries that depends jQuery here*/
-    var libArr = [{
-      name: "jQuery UI",
-      link: "//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"
-    }];
-    var libObj;
-
-    for (var i = 0; i < libArr.length; i++) {
-      libObj = document.createElement("script");
-      libObj.setAttribute("src", libArr[i]["link"]);
-
-      (function(libObj, libArrObj) {
-        libObj.onload = function(evt) {
-          console.log("after loading " + libArrObj["name"]);
-          var pObj = document.getElementsByTagName("p");
-          var lastPObj = pObj.length > 0 ? pObj[pObj.length - 1] : null;
-
-          var insertObj = document.createElement("p");
-          insertObj.innerHTML = "Well, now we have " + libArrObj["name"] + " from Google hosted libraries :)";
-
-          var insertLoc = lastPObj === null ? document.body.appendChild(insertObj) : document.body.insertBefore(insertObj, lastPObj.nextSibling);
-        }
-      })(libObj, libArr[i]);
-
-      document.body.appendChild(libObj);
-    };
-
-    // clean up
-    libObj = null; // remove referencing
-
-  }
-  bodyObj.appendChild(jQueryObj);
-
-  // clean up
-  jQueryObj = null; // remove referencing
-  bodyObj = null; // remove referencing
-  //-->
-  </script>
   <!-- get Ubuntu font -->
   <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
 </body>
