@@ -17,15 +17,16 @@
   <h3>By 某不知名少侠木 .{^~^}.</h3>
   <p>Well, this is the initialisation version</p>
   <ul>
-    <li><a href="angular-t">AngularJS Training - Expression & Scope</a>
+    <li><a href="angular-t" target="_blank">AngularJS Training - Expression & Scope</a>
     </li>
     <li>
-      <a href="under-construction">
+      <a href="under-construction" target="_blank">
         <p>New version of this site that under construction (Progress === Loading)</p>
-        <img src="resources/underconstruction1.jpg" alt="Under construction...">
+        <img src="resources/underconstruction1.jpg" alt="Under construction..." width="500">
       </a>
     </li>
   </ul>
+  <p><!-- this is for adding the further content --></p>
 
 
   <script type="text/javascript" charset="utf-8">
@@ -62,7 +63,7 @@
           var lastPObj = pObj.length > 0 ? pObj[pObj.length - 1] : null;
 
           var insertObj = document.createElement("p");
-          // insertObj.innerHTML = "Well, now we have " + libArrObj["name"] + " from Google hosted libraries :)";
+          insertObj.innerHTML = "Well, now we have " + libArrObj["name"] + " from Google hosted libraries :)";
 
           var insertLoc = lastPObj === null ? document.body.appendChild(insertObj) : document.body.insertBefore(insertObj, lastPObj.nextSibling);
         }
