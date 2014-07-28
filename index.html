@@ -2,78 +2,88 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>By 某不知名少侠木</title>
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css">
-    <style>
-        body {
-            font-family: 'Ubuntu',  sans-serif, 'STXingKai', 'STKaiti', 'Microsoft YaHei';
-        }
-    </style>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>By 某不知名少侠木</title>
+  <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css">
+  <style>
+  body {
+    font-family: 'Ubuntu', sans-serif, 'STXingKai', 'STKaiti', 'Microsoft YaHei';
+  }
+  </style>
 </head>
 
 <body>
-    <h1>Hello World!</h1>
-    <h3>By 某不知名少侠木 .{^~^}.</h3>
-    <p>Well, this is the initialisation version</p>
-    <a href="angular-t">AngularJS Training - Expression & Scope</a>
+  <h1>Hello World!</h1>
+  <h3>By 某不知名少侠木 .{^~^}.</h3>
+  <p>Well, this is the initialisation version</p>
+  <ul>
+    <li><a href="angular-t">AngularJS Training - Expression & Scope</a>
+    </li>
+    <li>
+      <a href="under-construction">
+        <p>New version of this site that under construction (Progress === Loading)</p>
+        <img src="resources/underconstruction1.jpg" alt="Under construction...">
+      </a>
+    </li>
+  </ul>
 
-    <script type="text/javascript" charset="utf-8">
-    //<!--
-    var jQueryObj = document.createElement("script");
-    var bodyObj = document.body;
 
-    jQueryObj.setAttribute("src", "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js");
-    jQueryObj.onload = function(evt) {
-        console.log("after loading jQuery");
-        var pObj = document.getElementsByTagName("p");
-        var lastPObj = pObj.length > 0 ? pObj[pObj.length - 1] : null;
+  <script type="text/javascript" charset="utf-8">
+  //<!--
+  var jQueryObj = document.createElement("script");
+  var bodyObj = document.body;
 
-        var insertObj = document.createElement("p");
-        // insertObj.innerHTML = "Well, now we have jQuery from Google hosted libraries :)";
+  jQueryObj.setAttribute("src", "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js");
+  jQueryObj.onload = function(evt) {
+    console.log("after loading jQuery");
+    var pObj = document.getElementsByTagName("p");
+    var lastPObj = pObj.length > 0 ? pObj[pObj.length - 1] : null;
 
-        var insertLoc = lastPObj === null ? document.body.appendChild(insertObj) : document.body.insertBefore(insertObj, lastPObj.nextSibling);
+    var insertObj = document.createElement("p");
+    // insertObj.innerHTML = "Well, now we have jQuery from Google hosted libraries :)";
 
-        /*load libraries that depends jQuery here*/
-        var libArr = [{
-            name: "jQuery UI",
-            link: "//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"
-        }];
-        var libObj;
+    var insertLoc = lastPObj === null ? document.body.appendChild(insertObj) : document.body.insertBefore(insertObj, lastPObj.nextSibling);
 
-        for (var i = 0; i < libArr.length; i++) {
-            libObj = document.createElement("script");
-            libObj.setAttribute("src", libArr[i]["link"]);
+    /*load libraries that depends jQuery here*/
+    var libArr = [{
+      name: "jQuery UI",
+      link: "//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"
+    }];
+    var libObj;
 
-            (function(libObj, libArrObj) {
-                libObj.onload = function(evt) {
-                    console.log("after loading " + libArrObj["name"]);
-                    var pObj = document.getElementsByTagName("p");
-                    var lastPObj = pObj.length > 0 ? pObj[pObj.length - 1] : null;
+    for (var i = 0; i < libArr.length; i++) {
+      libObj = document.createElement("script");
+      libObj.setAttribute("src", libArr[i]["link"]);
 
-                    var insertObj = document.createElement("p");
-                    // insertObj.innerHTML = "Well, now we have " + libArrObj["name"] + " from Google hosted libraries :)";
+      (function(libObj, libArrObj) {
+        libObj.onload = function(evt) {
+          console.log("after loading " + libArrObj["name"]);
+          var pObj = document.getElementsByTagName("p");
+          var lastPObj = pObj.length > 0 ? pObj[pObj.length - 1] : null;
 
-                    var insertLoc = lastPObj === null ? document.body.appendChild(insertObj) : document.body.insertBefore(insertObj, lastPObj.nextSibling);
-                }
-            })(libObj, libArr[i]);
+          var insertObj = document.createElement("p");
+          // insertObj.innerHTML = "Well, now we have " + libArrObj["name"] + " from Google hosted libraries :)";
 
-            document.body.appendChild(libObj);
-        };
+          var insertLoc = lastPObj === null ? document.body.appendChild(insertObj) : document.body.insertBefore(insertObj, lastPObj.nextSibling);
+        }
+      })(libObj, libArr[i]);
 
-        // clean up
-        libObj = null; // remove referencing
-
-    }
-    bodyObj.appendChild(jQueryObj);
+      document.body.appendChild(libObj);
+    };
 
     // clean up
-    jQueryObj = null; // remove referencing
-    bodyObj = null; // remove referencing
-    //-->
-    </script>
-    <!-- get Ubuntu font -->
-    <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
+    libObj = null; // remove referencing
+
+  }
+  bodyObj.appendChild(jQueryObj);
+
+  // clean up
+  jQueryObj = null; // remove referencing
+  bodyObj = null; // remove referencing
+  //-->
+  </script>
+  <!-- get Ubuntu font -->
+  <link href="http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic" rel="stylesheet" type="text/css">
 </body>
 
 </html>
