@@ -194,7 +194,7 @@
     var palette = window.jing && window.jing.palettes || []; // the colours
 
     // add listener for copy the colour code
-    wrapperElm.addEventListener('click', function(evt) {
+    wrapperElm.addEventListener('dblclick', function(evt) {
       var targetElm = evt.target;
 
       if (targetElm.classList.contains('cs-item')) {
@@ -246,64 +246,23 @@
 
   }());
 
-  // change the background colour very 5 seconds
+  // change the background colour when mouseover a colour block
   (function() {
     var jing = window.jing = window.jing || {};
     var palettes = jing.palettes || [];
     var colourIdx = 0;
-
-    function getNextColour(curIdx, palettes) {
-      var theNextColour;
-      var theNextIdx;
-      curIdx = curIdx || -1;
-
-      for (var i = curIdx + 1; i < palettes.length; i++) {
-        if (palettes[i] !== '---') {
-          theNextColour = palettes[i];
-          theNextIdx = i;
-          break;
-        }
-      };
-
-      return {
-        colour: theNextColour,
-        idx: theNextIdx
-      }
-    }
-
-    function initChangeBGTimer() {
-      return setInterval(function() {
-        var tmp;
-        if (palettes.length > 0) {
-          // change the background colour of the site
-          tmp = getNextColour(colourIdx, palettes);
-          colourIdx = tmp.idx;
-          document.body.style.background = tmp.colour;
-        }
-      }, 5000);
-    }
-
-    var changeBGTimer = initChangeBGTimer();
-
     var wrapperElm = document.querySelector('.palettes-sandbox');
 
-    // add listener for change the background colour
-    wrapperElm.addEventListener('mouseover', function(evt) {
+    function changeBGEventHandler(evt) {
       var targetElm = evt.target;
 
       if (targetElm.classList.contains('cs-item')) {
         document.body.style.background = targetElm.getAttribute('data-background');
-        clearInterval(changeBGTimer);
       }
-    });
+    }
 
-    wrapperElm.addEventListener('mouseout', function(evt) {
-      var targetElm = evt.target;
-
-      if (targetElm.classList.contains('cs-item')) {
-        changeBGTimer = initChangeBGTimer();
-      }
-    });
+    // add listener for change the background colour
+    wrapperElm.addEventListener('click', changeBGEventHandler);
 
   }());
   </script>
