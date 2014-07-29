@@ -7,8 +7,8 @@
   <title>The Palettes for the Base</title>
   <style>
   body {
-    -webkit-transition: all 1s ease-in-out;
-    transition: all 1s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
     margin: 0;
     padding: 0;
   }
@@ -257,7 +257,7 @@
       var theNextIdx;
       curIdx = curIdx || -1;
 
-      for (var i = curIdx+1; i < palettes.length; i++) {
+      for (var i = curIdx + 1; i < palettes.length; i++) {
         if (palettes[i] !== '---') {
           theNextColour = palettes[i];
           theNextIdx = i;
@@ -271,15 +271,40 @@
       }
     }
 
-    setInterval(function() {
-      var tmp;
-      if (palettes.length > 0) {
-        // change the background colour of the site
-        tmp = getNextColour(colourIdx, palettes);
-        colourIdx = tmp.idx;
-        document.body.style.background=tmp.colour;
+    function initChangeBGTimer() {
+      return setInterval(function() {
+        var tmp;
+        if (palettes.length > 0) {
+          // change the background colour of the site
+          tmp = getNextColour(colourIdx, palettes);
+          colourIdx = tmp.idx;
+          document.body.style.background = tmp.colour;
+        }
+      }, 5000);
+    }
+
+    var changeBGTimer = initChangeBGTimer();
+
+    var wrapperElm = document.querySelector('.palettes-sandbox');
+
+    // add listener for change the background colour
+    wrapperElm.addEventListener('mouseover', function(evt) {
+      var targetElm = evt.target;
+
+      if (targetElm.classList.contains('cs-item')) {
+        document.body.style.background = targetElm.getAttribute('data-background');
+        clearInterval(changeBGTimer);
       }
-    }, 5000);
+    });
+
+    wrapperElm.addEventListener('mouseout', function(evt) {
+      var targetElm = evt.target;
+
+      if (targetElm.classList.contains('cs-item')) {
+        changeBGTimer = initChangeBGTimer();
+      }
+    });
+
   }());
   </script>
   <script>
