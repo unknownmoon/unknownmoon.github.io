@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+  <title>The Palettes for the Base</title>
+  <style>
+  .palettes-sandbox {
+    width: 95%;
+    margin: 2.5%;
+  }
+  .cs-divider {
+    box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.1);
+    border-color: rgba(128, 128, 128, 0.1);
+    border-bottom: none;
+  }
+  .cs-item {
+    position: relative;
+    width: 200px;
+    height: 100px;
+    display: inline-block;
+    margin: 5px;
+    box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.3);
+    border: initial;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+    outline: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+  }
+  .cs-item:active {
+    box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.3), inset 2px 2px 5px 0px rgba(0, 0, 0, 0.3), inset -1px -1px 2px 0px rgba(0, 0, 0, 0.1);
+    transform: translate(2px, 2px);
+  }
+  .cs-item:after {
+    display: block;
+    content: attr(data-background);
+    width: calc(100% - 14px);
+    height: 1.25em;
+    padding: 0 7px;
+    position: absolute;
+    color: white;
+    margin: auto;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: all .35s ease-in-out;
+    text-shadow: 0px 0px 7px rgba(0, 0, 0, .4), 2px 0px 7px rgba(0, 0, 0, .4), -2px 0px 7px rgba(0, 0, 0, .4);
+  }
+  .cs-item:hover:after {
+    color: transparent;
+    text-shadow: initial;
+    height: 0;
+    width: 0;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="palettes-sandbox"></div>
+  <script>
+  (function() {
+    var palettes = [
+      '#FDFDFD', '#224968', '#31956A', '#664A8F', '#9051A6', '#385590', '#D49A1B', '#B8B0B5', '---',
+      '#F6F6F6', '#333A40', '#50565D', '#52AEB9', '#B2B4B2', '#FAA23D', '#30373E', '#B86B86', '---',
+      '#8F908F', '#5B5E5F', '#DFE2E1', '#12141A', '#04ADDE', '#9C774A', '#A8D2D4', '#59A7BE', '---',
+      '#F2F3F2', '#FEF4A3', '#FDE238', '#A2E0DF', '#FCEA5B', '#35C1C0', '#ABD050', '#3CAB42', '---',
+      '#FCFCFC', '#101F2E', '#3A5C79', '#37B2DE', '#436786', '#F7D31B', '#6B8A9D', '#A3B2B6', '---',
+      '#FCFCFB', '#6A5326', '#926E32', '#9CD0D1', '#4F432B', '#B9924C', '#769088', '#977847', '---',
+      '#41474C', '#ECEDEE', '#BABEB5', '#363D43', '#DF9471', '#7D8288', '#797C82', '#050506', '---',
+      '#567268', '#9D9C8B', '#F3F3F3', '#718674', '#898F7B', '#3B3833', '#C4BEBF', '#AC5B3E', '---',
+      '#363D4F', '#F2F3F3', '#33B1C4', '#444B5D', '#30A0AF', '#B0B1AD', '#37495A', '#8B9D59', '---',
+      '#FBED4D', '#EEEFEB', '#F7E93C', '#D5D2B3', '#ACADAB', '#454541', '#AEA235', '#5B9597', '---',
+      '#FDFCFC', '#050506', '#E7A7AB', '#98D9DE', '#36BCD1', '#F25C64', '#7EBB5E', '#4B4F50', '---',
+      '#019DC6', '#145A70', '#058FB0', '#E4E8DC', '#0A768E', '#5CA7AD', '#143B48', '#3D827E', '---',
+      '#191919', '#CACCCD', '#4F3D36', '#605E5D', '#A3A4A3', '#3D8EA0', '#9D7168', '#CABBB3', '---',
+      '#FAFBFC', '#5E6B72', '#B6C8CD', '#979FA3', '#A1D647', '#5ED0E9', '#B1C6BB', '#A57275', '---',
+      '#E2E2E2', '#ACA9A9', '#C4C0BC', '#75728B', '#C5A243', '#716D6B', '#8F7A56', '#2D2927', '---',
+      '#FBFCFC', '#4B6C8D', '#36B2DE', '#253B51', '#2E5C8B', '#A4B4BD', '#E2CF26', '#659EBB', '---',
+      '#FAFAF9', '#E94726', '#4E5155', '#434549', '#BDA59C', '#7C7F81', '#DD644C', '#DF8A73', '---',
+      '#24373B', '#5A5470', '#293D44', '#344653', '#9F648D', '#9E859C', '#C0608E', '#493E61', '---',
+      '#3BA9A2', '#EF5254', '#E5E6E7', '#41BDEC', '#AFC5D2', '#72856C', '#8AC44F', '#64B6BF', '---',
+      '#ECEDEE', '#9AAAB5', '#AFC9DC', '#0A75B4', '#555D65', '#5E9BC3', '#26292C', '#2376AF', '---',
+      '#E6E5E8', '#B15254', '#B14849', '#DBAAAE', '#B97B84', '#C4BDC2', '#442B32', '#B4949B', '---',
+      '#2F3847', '#D8D8DA', '#2F333E', '#9298A6', '#525A6A', '#6A768A', '#97866C', '#BFC4B8', '---',
+      '#A3DCEC', '#D2DDE0', '#EEDA91', '#050505', '#8FBAC4', '#959698', '#505F5F', '#9D9077', '---',
+      '#3A4C61', '#FDFDFD', '#4D5B6B', '#343646', '#80787A', '#38B0D2', '#9599A3', '#778C96', '---',
+      '#2B3438', '#F9FBFC', '#546269', '#C1CF4B', '#BA6C73', '#60D5ED', '#ACAFB2', '#4E433D', '---',
+      '#F4F2F3', '#959699', '#E6528B', '#C93770', '#7D7E82', '#6A686C', '#E291B1', '#A97087', '---',
+      '#F9F9F8', '#191919', '#54493B', '#C1B7AE', '#9B623F', '#9779C9', '#5CBFED', '#C2A94D', '---',
+      '#222F5D', '#E4E9EC', '#242734', '#2D55A1', '#A3B9C6', '#5D9DD3', '#3F66A5', '#DCB843', '---',
+      '#E3D6D7', '#C6B7BB', '#A3A3A3', '#CCBCC3', '#6E8D8C', '#55736B', '#326354', '#68827B', '---',
+      '#E5F4FC', '#A9DEE5', '#447BD1', '#83BCED', '#5E9BE3', '#5AA6E8', '#1759AE', '#2B74CC', '---',
+      '#F8F8FA', '#ACAAA7', '#EA5134', '#3D3D3D', '#F0B1A4', '#5D5A57', '#E8725B', '#E98B79', '---',
+      '#241C1A', '#E9ECF1', '#453833', '#414D54', '#3697C5', '#66984C', '#A6ADA7', '#599FBF', '---',
+      '#F4F2E3', '#89B8CB', '#97C6D8', '#3D4124', '#ABB358', '#50562E', '#798E5D', '#BBC0A0', '---',
+      '#EFA91D', '#242319', '#DCC8AD', '#524837', '#992709', '#78857C', '#A26230', '#C0A158', '---',
+      '#211D16', '#473824', '#C8A461', '#F2D48D', '#624D2D', '#8F7040', '#7D6541', '#BEB988', '---',
+      '#E3E7EE', '#B7BDC8', '#999DA7', '#221D22', '#5A5455', '#1D51A8', '#051860', '#73869D', '---',
+      '#F6F9FA', '#A6A7A6', '#ADC8D9', '#1E1E1E', '#606060', '#363F4A', '#42A5D6', '#B8BF36', '---',
+      '#F4F3EF', '#D42E34', '#A91F26', '#261F1F', '#631214', '#BC9EA2', '#D44954', '#A77889', '---',
+      '#A3A3A9', '#75728C', '#E7E6E4', '#CCB2AC', '#2D2849', '#544662', '#906B7A', '#877C90', '---',
+      '#FCFCFC', '#9FB7BC', '#9ACEFE', '#6FDE86', '#78B7F1', '#61DB7A', '#6F7283', '#3990E1', '---',
+      '#1E1E1E', '#5F5F5F', '#ED1B24', '#FDFDFD', '#A9999A', '#701115', '#B03035', '#AF7F80', '---',
+      '#EBEBEB', '#F68501', '#BAB2A9', '#2B2E30', '#F57301', '#788184', '#F7AB5F', '#A16112', '---',
+      '#FDFDFC', '#2D5106', '#152703', '#A5A9A0', '#52673A', '#9FDB53', '#6A973E', '#D1E3A9', '---',
+      '#FEFEFE', '#3FA9F5', '#7AC943', '#ADC0CE', '#0F6BEA', '#248A40', '#095D3D', '#61B4F6', '---',
+      '#EFD25D', '#575F63', '#3F474A', '#6F7981', '#D2BA5B', '#7C868D', '#9EA9B1', '#7D8367', '---',
+      '#2B292D', '#545255', '#363A44', '#3F4246', '#E6E7E7', '#7B7D7A', '#17ACB3', '#A1A29C', '---',
+      '#EAE9E5', '#CAC5BA', '#BEC4C3', '#A4A4A2', '#EE9894', '#59616F', '#847F85', '#203758', '---',
+      '#302923', '#CCBEB3', '#665A52', '#453A33', '#4E443B', '#968679', '#88776B', '#7D7B86', '---',
+      '#1C2027', '#1C344F', '#4E6E93', '#324C68', '#4B5767', '#315F8A', '#1BB6D7', '#D9E4E8', '---',
+      '#E1FB93', '#A0E594', '#574E5E', '#C9E379', '#363047', '#CB5E75', '#433E53', '#EFA5A0', '---',
+      '#F6F6F6', '#55357D', '#BCBEC3', '#573981', '#ABADAF', '#674D8C', '#3F2065', '#8573A3', '---',
+      '#F4634F', '#FCFBFA', '#4F4F48', '#EA3D44', '#659891', '#ACB75B', '#BB463B', '#C1AB9A', '---',
+      '#E4E4E6', '#A5A9A6', '#585A39', '#759162', '#AE5B39', '#BDC5B4', '#C6B960', '#97995E', '---',
+      '#191D20', '#2A3B44', '#494B4D', '#334F59', '#A05374', '#0FA7B8', '#0DAF6F', '#C2BFC1', '---',
+      '#2F2B29', '#594537', '#684D2F', '#9A612F', '#B7906A', '#C29D8D', '#C5966F', '#A0704E', '---',
+      '#755ACE', '#8C71E3', '#5C48AA', '#755863', '#F3CC3B', '#F6F3F2', '#EB5D9B', '#B39CD8', '---',
+      '#D3D2D0', '#B5B5B4', '#088D9C', '#2770BD', '#16739F', '#AFC8CB', '#1B9ECF', '#A56339', '---',
+      '#D6D5D3', '#A9A9AF', '#1B215F', '#EFB765', '#63668E', '#DCC7AB', '#343046', '#8D7663', '---',
+      '#2D3135', '#F9C30A', '#E4B209', '#47494C', '#BF9D21', '#44443D', '#F3EBD0', '#8E7620', '---',
+      '#E5ECF2', '#0F364D', '#254862', '#BCBCB8', '#D3B18D', '#052433', '#6C938C', '#D69D6F', '---',
+      '#30373A', '#49CEC7', '#8196F2', '#355959', '#535159', '#46808E', '#E5A36E', '#D36863', '---',
+      '#FFFFFF', '#182F31', '#B3B0B1', '#C12F13', '#3FA5BF', '#555E5E', '#D58879', '#CF5C46', '---',
+      '#FEFEFE', '#FECE2E', '#C66740', '#FDE7AF', '#488CB5', '#BFB7B2', '#D5AE30', '#418A6C', '---',
+      '#F2F3F3', '#275866', '#BDC2C1', '#053746', '#A2A59F', '#908F79', '#0F333E', '#6A8990', '---',
+      '#F7F7F7', '#2D3E50', '#019965', '#ACD5C9', '#9DA0A4', '#707B87', '#5FBB9D', '#5B636B', '---',
+      '#EBF7FC', '#A4E1F9', '#65CDF5', '#2F2C2C', '#1DB6E8', '#BFB5AA', '#BAC436', '#B24F1D', '---',
+      '#F6F6F4', '#ABACAB', '#DFD1AE', '#28271A', '#FBF051', '#E3D733', '#5F5E4A', '#76887C', '---',
+      '#FAF9F9', '#E44B3B', '#323232', '#CCB3A7', '#5D5451', '#7D7F84', '#D55A49', '#D1986D', '---',
+      '#F6F6F6', '#2D2B58', '#273592', '#85D4F7', '#3C364B', '#A0A6A6', '#A0A167', '#465E8F', '---',
+      '#E4E0DC', '#B4A79E', '#BEC1BE', '#CEC4BB', '#C5B9AF', '#A08975', '#604330', '#8F6D52', '---',
+      '#E7E7E7', '#583729', '#00647C', '#ADB2B2', '#187288', '#6D5145', '#8D776E', '#5598A7', '---',
+      '#DDDBDB', '#FABB27', '#315589', '#333333', '#6A2635', '#99939E', '#F4D489', '---',
+      '#3AB54A', '#FBFEFC', '#49BB57', '#5EC36B', '#BCE6C1', '#A5DDAC', '#7ACD84', '---',
+      '#E65625', '#FFFDEA', '#F3AC8B', '#F9D2B8', '#ED845B', '#EB754A', '---',
+      '#2430E4', '#3E49EA', '#5660E9', '#7A81E8', '#999EE9', '---',
+      '#EADD7D', '#F6F2C2', '#FEF0FD', '#D4CFE6', '#474048', '---',
+      '#BEBCBF', '#D7F0DA', '#A7CEF9', '#3360D5', '#53302A', '---',
+      '#5C84E3', '#75D5E5', '#A6CCF9', '#B1D1F8', '#F2EBE1', '---',
+      '#073E29', '#518672', '#69A581', '#90C9A6', '#C4FDD4', '---',
+      '#47392E', '#CABBA8', '#EDE3D9', '#DFEAE4', '#AAB4AC', '---',
+      '#C2BAE1', '#E4D2C4', '#FFCA97', '#FFFDA4', '#FFBFAD', '---',
+      '#8AE6FF', '#33D2FC', '#E8EDC5', '#056424', '#00763B', '---',
+      '#ECB1DE', '#FCDEF5', '#F7F6F7', '#D3CED2', '#0E0E0E', '---',
+      '#DA1D22', '#B94B51', '#DA240C', '#A297A8', '#1BC2EF', '---',
+      '#8EC2F4', '#91B8E3', '#8BAEEE', '#73AEEA', '#72A9D8', '---',
+      '#6CEFF4', '#5979DA', '#61AFF0', '#66A8F1', '#60A1EF', '---',
+      '#9BBDC9', '#398CB6', '#E4C78F', '#F0DAAB', '#EEE0C5', '---',
+      '#2E231C', '#3C3D4D', '#3B81B8', '#8298ED', '#E9F1F7', '---',
+      '#47516C', '#E1C3CB', '#6C6986', '#61536A', '#3B3863', '---',
+      '#C6A1D5', '#D4D2D7', '#B8C1E8', '#74B9F0', '#5792B4', '---',
+      '#280A00', '#F26F29', '#6B270C', '#F9ECA9', '#E2D6A3', '---',
+      '#FEFAEF', '#F7C7A1', '#F1B174', '#E27453', '#AA3B34', '---',
+      '#D1D2CA', '#CBD2B0', '#B5BF9D', '#98C5A4', '#E2C5BD', '---',
+      '#002552', '#00498A', '#05ACD6', '#02EFF5', '#F3FBFD', '---',
+      '#47372B', '#181818', '#AA9370', '#E8C998', '#FB7524', '---',
+      '#B3C9D6', '#A19CD6', '#4B316E', '#6466D3', '#A8C9D8', '---',
+      '#F4F8C3', '#DA8D29', '#FFEB48', '#92E3E5', '#5FAAAD', '---',
+      '#4D5D4A', '#4A4A5D', '#4A5C5D', '#574A5D', '---',
+      '#FFFFFF', '#44E1CA', '#43E0BF', '#A0EFE4', '---',
+      '#589169', '#CFEAA5', '#2B3F24', '#0F1C0B', '---',
+      '#FFFEB3', '#6B793B', '#75986E', '---',
+      '#FFFFFF', '#E04C4C', '#EE9F9F', '---',
+      '#648880', '#293f50', '---'
+    ];
+
+    // export to global
+    var jing = window.jing = window.jing || {};
+
+    jing.palettes = palettes;
+
+  }());
+
+  (function() {
+    var wrapperElm = document.querySelector('.palettes-sandbox');
+    var colourLabelElm = document.createElement('label');
+    colourLabelElm.classList.add('palette-label');
+    wrapperElm.appendChild(colourLabelElm);
+    var palette = window.jing && window.jing.palettes || []; // the colours
+
+    // add listener for copy the colour code
+    wrapperElm.addEventListener('click', function(evt) {
+      var targetElm = evt.target;
+
+      if (targetElm.classList.contains('cs-item')) {
+        window.prompt('The colour: ', targetElm.getAttribute('data-background'));
+      }
+    });
+
+    palette.forEach(function(colour, idx) {
+      var csItemElm;
+      if (colour === '---') {
+        csItemElm = document.createElement('hr');
+        csItemElm.classList.add('cs-divider');
+      } else {
+        csItemElm = document.createElement('div');
+        csItemElm.classList.add('cs-item');
+        csItemElm.style.background = colour;
+        csItemElm.setAttribute('data-background', colour);
+      }
+
+      wrapperElm.appendChild(csItemElm);
+    });
+  }());
+
+  (function(){
+    var jing = window.jing = window.jing || {};
+
+    // statistic analysis
+    var palettes = window.jing.palettes || []; // the colours
+
+    var result = {}
+    var tmpResult = {};
+
+    palettes.forEach(function(colour, idx){
+      if (colour === '---') {
+        return; // skip
+      } else {
+        result[colour] = (result[colour] || 0) + 1;
+      }
+    });
+
+    // transform result
+    Object.keys(result).forEach(function(key){
+      tmpResult[result[key]] = tmpResult[result[key]] || [];
+      tmpResult[result[key]].push(key);
+    });
+
+    // export result
+    jing.result = tmpResult;
+
+  }());
+
+  </script>
+  <script>
+  function getColorFromDribbble() {
+    var out = '';
+    var a = document.querySelectorAll('.color-chips.group .color a');
+    for (var i = 0; i < a.length; i++) {
+      out += '\'' + a[i].title + '\', ';
+    };
+
+    out += '\'---\',';
+    console.log(out);
+    copy(out); // only work in Chrome
+  }
+  </script>
+</body>
+
+</html>
