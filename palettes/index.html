@@ -6,6 +6,12 @@
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
   <title>The Palettes for the Base</title>
   <style>
+  body {
+    -webkit-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+    margin: 0;
+    padding: 0;
+  }
   .palettes-sandbox {
     width: 95%;
     margin: 2.5%;
@@ -212,7 +218,7 @@
     });
   }());
 
-  (function(){
+  (function() {
     var jing = window.jing = window.jing || {};
 
     // statistic analysis
@@ -221,7 +227,7 @@
     var result = {}
     var tmpResult = {};
 
-    palettes.forEach(function(colour, idx){
+    palettes.forEach(function(colour, idx) {
       if (colour === '---') {
         return; // skip
       } else {
@@ -230,7 +236,7 @@
     });
 
     // transform result
-    Object.keys(result).forEach(function(key){
+    Object.keys(result).forEach(function(key) {
       tmpResult[result[key]] = tmpResult[result[key]] || [];
       tmpResult[result[key]].push(key);
     });
@@ -240,6 +246,41 @@
 
   }());
 
+  // change the background colour very 5 seconds
+  (function() {
+    var jing = window.jing = window.jing || {};
+    var palettes = jing.palettes || [];
+    var colourIdx = 0;
+
+    function getNextColour(curIdx, palettes) {
+      var theNextColour;
+      var theNextIdx;
+      curIdx = curIdx || -1;
+
+      for (var i = curIdx+1; i < palettes.length; i++) {
+        if (palettes[i] !== '---') {
+          theNextColour = palettes[i];
+          theNextIdx = i;
+          break;
+        }
+      };
+
+      return {
+        colour: theNextColour,
+        idx: theNextIdx
+      }
+    }
+
+    setInterval(function() {
+      var tmp;
+      if (palettes.length > 0) {
+        // change the background colour of the site
+        tmp = getNextColour(colourIdx, palettes);
+        colourIdx = tmp.idx;
+        document.body.style.background=tmp.colour;
+      }
+    }, 5000);
+  }());
   </script>
   <script>
   function getColorFromDribbble() {
