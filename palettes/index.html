@@ -7,14 +7,24 @@
   <title>The Palettes for the Base</title>
   <style>
   body {
-    -webkit-transition: all .5s ease-in-out;
-    transition: all .5s ease-in-out;
     margin: 0;
     padding: 0;
   }
+  label {
+    cursor: pointer;
+  }
+  .display-ctrl-label {
+    display:  block;
+  }
+  .display-ctrl {
+    display: none;
+  }
+  .display-ctrl:checked+.display-ctrled {
+    display: none;
+  }
   .palettes-sandbox {
     width: 95%;
-    margin: 2.5%;
+    margin: 10px 2.5%;
   }
   .cs-divider {
     box-shadow: 2px 2px 7px 0px rgba(0, 0, 0, 0.1);
@@ -24,7 +34,7 @@
   .cs-item {
     position: relative;
     width: 200px;
-    height: 100px;
+    height: 150px;
     display: inline-block;
     margin: 5px;
     box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.3);
@@ -39,9 +49,26 @@
     -o-user-select: none;
     user-select: none;
   }
+  .cs-item.selected {
+    width: 620px;
+    height: 450px;
+    transition: all .75s ease-in-out;
+  }
   .cs-item:active {
     box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.3), inset 2px 2px 5px 0px rgba(0, 0, 0, 0.3), inset -1px -1px 2px 0px rgba(0, 0, 0, 0.1);
     transform: translate(2px, 2px);
+  }
+  .cs-item:before {
+    display: block;
+    content: attr(data-index);
+    color: black;
+    font-size: .75em;
+    text-shadow: 0 0 10px lightyellow, 3px 0 5px lightyellow, -3px 0 5px lightyellow, 0 3px 5px lightyellow, 0 -3px 5px lightyellow;
+    transition: all .35s ease-in-out;
+    position: absolute;
+    left: 10px;
+    top: 7px;
+    font-size: .75em;
   }
   .cs-item:after {
     display: block;
@@ -60,20 +87,67 @@
     transition: all .35s ease-in-out;
     text-shadow: 0px 0px 7px rgba(0, 0, 0, .4), 2px 0px 7px rgba(0, 0, 0, .4), -2px 0px 7px rgba(0, 0, 0, .4);
   }
-  .cs-item:hover:after {
-    color: transparent;
-    text-shadow: initial;
-    height: 0;
-    width: 0;
+  .cs-item:hover:after,
+  .cs-item:hover:before {
+    opacity: 0;
+  }
+  .palette-sample {
+    width: 95%;
+    margin: 10px 2.5%;
   }
   </style>
 </head>
 
 <body>
-  <div class="palettes-sandbox"></div>
+  <label for="ctrl-display-the-base" class="display-ctrl-label">
+    <h3>Palette of the base</h3>
+  </label>
+  <input type="checkbox" id="ctrl-display-the-base" class="display-ctrl" checked="">
+  <div class="palette-sample display-ctrled"></div>
+  <label for="ctrl-display-collections" class="display-ctrl-label">
+    <h3>Collections</h3>
+  </label>
+  <input type="checkbox" id="ctrl-display-collections" class="display-ctrl">
+  <div class="palettes-sandbox display-ctrled"></div>
   <script>
   (function() {
+    var paletteTheBase = [
+      /* the dominated */
+      // some white, bright colour
+      // reference
+      'white', '---',
+      // selected
+      'HoneyDew', /*hsl(120, 100%, 97%)*/ 'linear-gradient(Azure, HoneyDew 15%, HoneyDew 65%, Azure 110%)', '---',
+      // candidates
+      'LightCyan', 'LightYellow', '#F3EBD0', '#E5ECF2', '#F6F2C2', '#F4F8C3', 'Azure',
+      '---',
+      /* the secondary */
+      // some blue
+      'blue',
+      '---',
+      // some green
+      'green',
+      '---',
+      /* the accent */
+      // some orange
+      'orange',
+      '---',
+      // some yellow
+      'yellow',
+      '---',
+      // some red
+      'red',
+      '---',
+      /* others */
+      // some gray
+      'gray',
+      '---',
+      // some brown
+      'brown',
+      '---'
+    ];
     var palettes = [
+      'AliceBlue', 'AntiqueWhite', 'Aqua', 'Aquamarine', 'Azure', 'Beige', 'Bisque', 'Black', 'BlanchedAlmond', 'Blue', 'BlueViolet', 'Brown', 'BurlyWood', 'CadetBlue', 'Chartreuse', 'Chocolate', 'Coral', 'CornflowerBlue', 'Cornsilk', 'Crimson', 'Cyan', 'DarkBlue', 'DarkCyan', 'DarkGoldenRod', 'DarkGray', 'DarkGreen', 'DarkKhaki', 'DarkMagenta', 'DarkOliveGreen', 'DarkOrange', 'DarkOrchid', 'DarkRed', 'DarkSalmon', 'DarkSeaGreen', 'DarkSlateBlue', 'DarkSlateGray', 'DarkTurquoise', 'DarkViolet', 'DeepPink', 'DeepSkyBlue', 'DimGray', 'DodgerBlue', 'FireBrick', 'FloralWhite', 'ForestGreen', 'Fuchsia', 'Gainsboro', 'GhostWhite', 'Gold', 'GoldenRod', 'Gray', 'Green', 'GreenYellow', 'HoneyDew', 'HotPink', 'IndianRed ', 'Indigo  ', 'Ivory', 'Khaki', 'Lavender', 'LavenderBlush', 'LawnGreen', 'LemonChiffon', 'LightBlue', 'LightCoral', 'LightCyan', 'LightGoldenRodYellow', 'LightGray', 'LightGreen', 'LightPink', 'LightSalmon', 'LightSeaGreen', 'LightSkyBlue', 'LightSlateGray', 'LightSteelBlue', 'LightYellow', 'Lime', 'LimeGreen', 'Linen', 'Magenta', 'Maroon', 'MediumAquaMarine', 'MediumBlue', 'MediumOrchid', 'MediumPurple', 'MediumSeaGreen', 'MediumSlateBlue', 'MediumSpringGreen', 'MediumTurquoise', 'MediumVioletRed', 'MidnightBlue', 'MintCream', 'MistyRose', 'Moccasin', 'NavajoWhite', 'Navy', 'OldLace', 'Olive', 'OliveDrab', 'Orange', 'OrangeRed', 'Orchid', 'PaleGoldenRod', 'PaleGreen', 'PaleTurquoise', 'PaleVioletRed', 'PapayaWhip', 'PeachPuff', 'Peru', 'Pink', 'Plum', 'PowderBlue', 'Purple', 'Red', 'RosyBrown', 'RoyalBlue', 'SaddleBrown', 'Salmon', 'SandyBrown', 'SeaGreen', 'SeaShell', 'Sienna', 'Silver', 'SkyBlue', 'SlateBlue', 'SlateGray', 'Snow', 'SpringGreen', 'SteelBlue', 'Tan', 'Teal', 'Thistle', 'Tomato', 'Turquoise', 'Violet', 'Wheat', 'White', 'WhiteSmoke', 'Yellow', 'YellowGreen', '---',
       '#FDFDFD', '#224968', '#31956A', '#664A8F', '#9051A6', '#385590', '#D49A1B', '#B8B0B5', '---',
       '#F6F6F6', '#333A40', '#50565D', '#52AEB9', '#B2B4B2', '#FAA23D', '#30373E', '#B86B86', '---',
       '#8F908F', '#5B5E5F', '#DFE2E1', '#12141A', '#04ADDE', '#9C774A', '#A8D2D4', '#59A7BE', '---',
@@ -183,39 +257,55 @@
     var jing = window.jing = window.jing || {};
 
     jing.palettes = palettes;
+    jing.paletteTheBase = paletteTheBase;
 
   }());
 
   (function() {
     var wrapperElm = document.querySelector('.palettes-sandbox');
-    var colourLabelElm = document.createElement('label');
-    colourLabelElm.classList.add('palette-label');
-    wrapperElm.appendChild(colourLabelElm);
-    var palette = window.jing && window.jing.palettes || []; // the colours
+    var hrNumOffset = 0;
+    var palettes = window.jing && window.jing.palettes || []; // the colours
+    var paletteTheBase = window.jing && window.jing.paletteTheBase || []; // the colours
 
-    // add listener for copy the colour code
-    wrapperElm.addEventListener('dblclick', function(evt) {
+    function popupColourCodeEventHandler(evt) {
       var targetElm = evt.target;
 
       if (targetElm.classList.contains('cs-item')) {
         window.prompt('The colour: ', targetElm.getAttribute('data-background'));
       }
-    });
+    }
 
-    palette.forEach(function(colour, idx) {
+    // add listener for copy the colour code
+    wrapperElm.addEventListener('dblclick', popupColourCodeEventHandler);
+
+    function colourHandler(colour, idx) {
       var csItemElm;
+      if (idx === 0) {
+        hrNumOffset = 0; // reset
+      }
       if (colour === '---') {
         csItemElm = document.createElement('hr');
+        hrNumOffset++
         csItemElm.classList.add('cs-divider');
       } else {
         csItemElm = document.createElement('div');
         csItemElm.classList.add('cs-item');
         csItemElm.style.background = colour;
         csItemElm.setAttribute('data-background', colour);
+        csItemElm.setAttribute('data-index', idx - hrNumOffset);
       }
 
       wrapperElm.appendChild(csItemElm);
-    });
+    }
+
+    palettes.forEach(colourHandler);
+
+    wrapperElm = document.querySelector('.palette-sample');
+
+    // add listener for copy the colour code
+    wrapperElm.addEventListener('dblclick', popupColourCodeEventHandler);
+
+    paletteTheBase.forEach(colourHandler);
   }());
 
   (function() {
@@ -255,11 +345,33 @@
 
     function changeBGEventHandler(evt) {
       var targetElm = evt.target;
+      var tmp;
 
       if (targetElm.classList.contains('cs-item')) {
         document.body.style.background = targetElm.getAttribute('data-background');
+        tmp = document.querySelector('.selected');
+        if (tmp !== null) {
+          tmp.classList.remove('selected')
+        };
+        targetElm.classList.add('selected');
       }
     }
+
+    document.body.addEventListener('click', function(evt) {
+      if (!evt.target.classList.contains('cs-item')) {
+        // change the background colour to white
+        document.body.style.background = '#fff';
+        var tmp = document.querySelector('.selected');
+        if (tmp !== null) {
+          tmp.classList.remove('selected')
+        };
+      }
+    });
+
+    // add listener for change the background colour
+    wrapperElm.addEventListener('click', changeBGEventHandler);
+
+    wrapperElm = document.querySelector('.palette-sample');
 
     // add listener for change the background colour
     wrapperElm.addEventListener('click', changeBGEventHandler);
