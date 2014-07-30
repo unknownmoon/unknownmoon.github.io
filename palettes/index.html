@@ -14,7 +14,7 @@
     cursor: pointer;
   }
   .display-ctrl-label {
-    display:  block;
+    display: block;
   }
   .display-ctrl {
     display: none;
@@ -33,8 +33,8 @@
   }
   .cs-item {
     position: relative;
-    width: 200px;
-    height: 150px;
+    width: 100px;
+    height: 50px;
     display: inline-block;
     margin: 5px;
     box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.3);
@@ -49,10 +49,14 @@
     -o-user-select: none;
     user-select: none;
   }
-  .cs-item.selected {
-    width: 620px;
-    height: 450px;
+  .cs-item.selected,
+  .cs-item:hover {
+    width: 320px;
+    height: 200px;
     transition: all .75s ease-in-out;
+  }
+  .cs-item:hover {
+    transition: all .75s ease-in-out .5s;
   }
   .cs-item:active {
     box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.3), inset 2px 2px 5px 0px rgba(0, 0, 0, 0.3), inset -1px -1px 2px 0px rgba(0, 0, 0, 0.1);
@@ -71,6 +75,7 @@
     font-size: .75em;
   }
   .cs-item:after {
+    opacity: 0;
     display: block;
     content: attr(data-background);
     width: calc(100% - 14px);
@@ -88,8 +93,9 @@
     text-shadow: 0px 0px 7px rgba(0, 0, 0, .4), 2px 0px 7px rgba(0, 0, 0, .4), -2px 0px 7px rgba(0, 0, 0, .4);
   }
   .cs-item:hover:after,
-  .cs-item:hover:before {
-    opacity: 0;
+  .cs-item.selected:after {
+    opacity: 1;
+    transition: all .75s ease-in-out .5s;
   }
   .palette-sample {
     width: 95%;
@@ -102,7 +108,7 @@
   <label for="ctrl-display-the-base" class="display-ctrl-label">
     <h3>Palette of the base</h3>
   </label>
-  <input type="checkbox" id="ctrl-display-the-base" class="display-ctrl" checked="">
+  <input type="checkbox" id="ctrl-display-the-base" class="display-ctrl">
   <div class="palette-sample display-ctrled"></div>
   <label for="ctrl-display-collections" class="display-ctrl-label">
     <h3>Collections</h3>
@@ -111,40 +117,94 @@
   <div class="palettes-sandbox display-ctrled"></div>
   <script>
   (function() {
+    function hslColourGen(hue, step) {
+      var out = [];
+      var hueArr;
+      step = step || 10;
+
+      if (hue instanceof Array) {
+        hueArr = hue;
+      } else {
+        hueArr = [hue];
+      }
+
+      hueArr.forEach(function(hue, idx) {
+        for (var i = 0; i <= 100; i += step) {
+          if (i === 0 || i === 100) {
+            continue;
+          }
+          for (var j = 0; j <= 100; j += step) {
+            out.push('hsl(' + hue + ', ' + j + '%, ' + i + '%' + ')');
+          };
+          out.push('---');
+        }
+      });
+      return out;
+    }
+
+    // export to global
+    var jing = window.jing = window.jing || {};
+
+    jing.hslColourGen = hslColourGen;
+  }());
+  (function() {
+    var jing = window.jing = window.jing || {};
+
+    jing.DEFAULT_BG = '#f5fbe9';
+
     var paletteTheBase = [
+      /* branding */
+
+      // rainbow base 20, 10, 40, 60, 80, 200, 245, 260
+      // '#F50', '#FF2B00', '#FA0', '#FF0', '#AF0', '#0AF', '#1500FF', '#50F', '---',
+
+      // selected brand colours
+      // '#F50', '#FA0', '#FF0', '#AF0', '#0AF', '#1500FF', '#50F', '---',
+      '#acd161', '#61acd1', '#7470a9', '#fb3', '---',
+
       /* the dominated */
-      // some white, bright colour
-      // reference
-      'white', '---',
-      // selected
-      'HoneyDew', /*hsl(120, 100%, 97%)*/ 'linear-gradient(Azure, HoneyDew 15%, HoneyDew 65%, Azure 110%)', '---',
-      // candidates
-      'LightCyan', 'LightYellow', '#F3EBD0', '#E5ECF2', '#F6F2C2', '#F4F8C3', 'Azure',
+
+      // background
+      '#f5fbe9', // '#FFF', '#EBF6D5',
       '---',
+
+      // components background
+      '#fdc',
+      /* main */
+      '#fec', '#ffc',
+      // primary
+      '#efc',
+      '#cef',
+      /* end of main */
+      '#d0ccff', '#dcf', '---',
+
       /* the secondary */
-      // some blue
-      'blue',
+      // primary
+      '#acd161',
+      // primary supplement
+      '#c7f075', '#2d3b11',
       '---',
-      // some green
-      'green',
+
+      // secondary
+      '#61acd1', '#7470a9',
       '---',
+
       /* the accent */
-      // some orange
-      'orange',
-      '---',
-      // some yellow
-      'yellow',
-      '---',
-      // some red
-      'red',
-      '---',
-      /* others */
-      // some gray
-      'gray',
-      '---',
-      // some brown
-      'brown',
-      '---'
+      // success
+      '#b8f53d',
+
+      // highlight, warning
+      '#f6f655',
+
+      // error, forbidden
+      '#ff661a',
+
+      // disabled, light, shadow
+      '#d1dbbd', '#dde4cd', '#e0e0b8', '#e8e8c9',
+
+      // other
+      '#fb3', '---',
+
     ];
     var palettes = [
       'AliceBlue', 'AntiqueWhite', 'Aqua', 'Aquamarine', 'Azure', 'Beige', 'Bisque', 'Black', 'BlanchedAlmond', 'Blue', 'BlueViolet', 'Brown', 'BurlyWood', 'CadetBlue', 'Chartreuse', 'Chocolate', 'Coral', 'CornflowerBlue', 'Cornsilk', 'Crimson', 'Cyan', 'DarkBlue', 'DarkCyan', 'DarkGoldenRod', 'DarkGray', 'DarkGreen', 'DarkKhaki', 'DarkMagenta', 'DarkOliveGreen', 'DarkOrange', 'DarkOrchid', 'DarkRed', 'DarkSalmon', 'DarkSeaGreen', 'DarkSlateBlue', 'DarkSlateGray', 'DarkTurquoise', 'DarkViolet', 'DeepPink', 'DeepSkyBlue', 'DimGray', 'DodgerBlue', 'FireBrick', 'FloralWhite', 'ForestGreen', 'Fuchsia', 'Gainsboro', 'GhostWhite', 'Gold', 'GoldenRod', 'Gray', 'Green', 'GreenYellow', 'HoneyDew', 'HotPink', 'IndianRed ', 'Indigo  ', 'Ivory', 'Khaki', 'Lavender', 'LavenderBlush', 'LawnGreen', 'LemonChiffon', 'LightBlue', 'LightCoral', 'LightCyan', 'LightGoldenRodYellow', 'LightGray', 'LightGreen', 'LightPink', 'LightSalmon', 'LightSeaGreen', 'LightSkyBlue', 'LightSlateGray', 'LightSteelBlue', 'LightYellow', 'Lime', 'LimeGreen', 'Linen', 'Magenta', 'Maroon', 'MediumAquaMarine', 'MediumBlue', 'MediumOrchid', 'MediumPurple', 'MediumSeaGreen', 'MediumSlateBlue', 'MediumSpringGreen', 'MediumTurquoise', 'MediumVioletRed', 'MidnightBlue', 'MintCream', 'MistyRose', 'Moccasin', 'NavajoWhite', 'Navy', 'OldLace', 'Olive', 'OliveDrab', 'Orange', 'OrangeRed', 'Orchid', 'PaleGoldenRod', 'PaleGreen', 'PaleTurquoise', 'PaleVioletRed', 'PapayaWhip', 'PeachPuff', 'Peru', 'Pink', 'Plum', 'PowderBlue', 'Purple', 'Red', 'RosyBrown', 'RoyalBlue', 'SaddleBrown', 'Salmon', 'SandyBrown', 'SeaGreen', 'SeaShell', 'Sienna', 'Silver', 'SkyBlue', 'SlateBlue', 'SlateGray', 'Snow', 'SpringGreen', 'SteelBlue', 'Tan', 'Teal', 'Thistle', 'Tomato', 'Turquoise', 'Violet', 'Wheat', 'White', 'WhiteSmoke', 'Yellow', 'YellowGreen', '---',
@@ -254,9 +314,10 @@
     ];
 
     // export to global
-    var jing = window.jing = window.jing || {};
-
     jing.palettes = palettes;
+    // jing.paletteTheBase = paletteTheBase.concat(window.jing.hslColourGen && window.jing.hslColourGen([20, 40, 60, 80, 200, 245, 260], 5) || []); // generate the rainbow
+    // jing.paletteTheBase = paletteTheBase.concat(window.jing.hslColourGen && window.jing.hslColourGen([10, 40, 60, 80, 200, 245, 260], 5) || []); // generate others
+    // jing.paletteTheBase = paletteTheBase.concat(window.jing.hslColourGen && window.jing.hslColourGen([60], 5) || []); // generate variation
     jing.paletteTheBase = paletteTheBase;
 
   }());
@@ -357,10 +418,13 @@
       }
     }
 
+    // change the background colour to the default background
+    document.body.style.background = jing.DEFAULT_BG || '#FFF';
+
     document.body.addEventListener('click', function(evt) {
       if (!evt.target.classList.contains('cs-item')) {
-        // change the background colour to white
-        document.body.style.background = '#fff';
+        // change the background colour to the default background
+        document.body.style.background = jing.DEFAULT_BG || '#FFF';
         var tmp = document.querySelector('.selected');
         if (tmp !== null) {
           tmp.classList.remove('selected')
