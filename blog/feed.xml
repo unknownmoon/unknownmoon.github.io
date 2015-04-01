@@ -5,9 +5,66 @@
     <description>*This site is sitll under construction.*</description>
     <link>http://www.jinggj.me/blog/</link>
     <atom:link href="http://www.jinggj.me/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 02 Apr 2015 00:45:06 +0800</pubDate>
-    <lastBuildDate>Thu, 02 Apr 2015 00:45:06 +0800</lastBuildDate>
+    <pubDate>Thu, 02 Apr 2015 02:17:09 +0800</pubDate>
+    <lastBuildDate>Thu, 02 Apr 2015 02:17:09 +0800</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Bootstrap 3 v.s. Foundation 5</title>
+        <description>&lt;p&gt;Now I&#39;m looking for a HTML/CSS/JS framework for build a theme for this blog, there are two of the frameworks on the top of the list - &lt;a href=&quot;http://getbootstrap.com/&quot; title=&quot;Bootstrap Home&quot;&gt;Bootstrap&lt;/a&gt; and &lt;a href=&quot;http://foundation.zurb.com/&quot; title=&quot;Foundation Home&quot;&gt;Foundation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Based on the articles I found, it seems that Foundation wins. Following are the pros of Foundation:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Foundation 5 provides a better grid system than Bootstrap 3 - &lt;a href=&quot;http://foundation.zurb.com/docs/components/block_grid.html&quot;&gt;The Block Grid&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Foundation 5 is using &lt;code&gt;rem&lt;/code&gt; as sizing unit while Bootstrap 3 is using &lt;code&gt;px&lt;/code&gt;, namely Foundation 5 is closer to the concept &lt;code&gt;responsive&lt;/code&gt; or &lt;code&gt;mobile-first&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Foundation 5 provides some useful features, such as form validation (&lt;a href=&quot;http://foundation.zurb.com/docs/components/abide.html&quot;&gt;Abide&lt;/a&gt;), &lt;a href=&quot;http://foundation.zurb.com/docs/components/interchange.html&quot;&gt;Interchange&lt;/a&gt;, &lt;a href=&quot;http://foundation.zurb.com/docs/components/rtl.html&quot;&gt;right-to-left support&lt;/a&gt;, &lt;a href=&quot;http://foundation.zurb.com/docs/components/pricing_tables.html&quot;&gt;pricing tables&lt;/a&gt;, &lt;a href=&quot;http://foundation.zurb.com/docs/components/joyride.html&quot;&gt;tours&lt;/a&gt;, and &lt;a href=&quot;http://foundation.zurb.com/docs/components/offcanvas.html&quot;&gt;off-canvas navigation&lt;/a&gt; &lt;sup&gt;[&lt;a href=&quot;http://blog.teamtreehouse.com/use-bootstrap-or-foundation&quot; title=&quot;Should You Use Bootstrap or Foundation?&quot;&gt;1&lt;/a&gt;]&lt;/sup&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;However, Bootstrap 3, or generally Bootstrap, is occupying a larger market, which means that there are much more themes in the wild than Foundation.&lt;/p&gt;
+
+&lt;p&gt;Other than the comparison above, people are also discussing about that for using Foundation, one need more customisation than using Bootstrap. It takes longer than using Bootstrap for initialising a project. It sounds like that if we don&#39;t use third party themes, using Foundation could reduce the similarity of the web application comparing using Bootstrap.&lt;/p&gt;
+
+&lt;p&gt;There are other thoughts learned from the articles, that I found when people evaluating this kind of frameworks, they consider more about the grid system, sizing unit and how good the framework fits the requirement of mobile-first/responsive design.&lt;/p&gt;
+
+&lt;p&gt;All in all, Foundation 5 is decided to be used for the theme of this blog, if nothing special happens.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Bibliography&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;a href=&quot;http://blog.teamtreehouse.com/use-bootstrap-or-foundation&quot; title=&quot;Should You Use Bootstrap or Foundation?&quot;&gt;Should You Use Bootstrap or Foundation?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://scotch.io/tutorials/foundation-5-features-that-bootstrap-doesnt-have&quot; title=&quot;Foundation 5 Features that Bootstrap Doesn&#39;t Have&quot;&gt;Foundation 5 Features that Bootstrap Doesn&#39;t Have&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.sitepoint.com/grid-system-comparison-bootstrap-vs-foundation/&quot; title=&quot;Grid System Comparison: Bootstrap 3 v.s. Foundation 5&quot;&gt;Grid System Comparison: Bootstrap 3 v.s. Foundation 5&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://bootstrapbay.com/blog/bootstrap-vs-foundation/&quot; title=&quot;Bootstrap vs. Foundation: Which Framework is Better?&quot;&gt;Bootstrap vs. Foundation: Which Framework is Better?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://responsive.vermilion.com/compare.php&quot; title=&quot;Responsive CSS Framework Comparison&quot;&gt;Responsive CSS Framework Comparison&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Why rem
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;https://css-tricks.com/theres-more-to-the-css-rem-unit-than-font-sizing/&quot;&gt;There&#39;s more to the CSS rem unit than font sizing&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://snook.ca/archives/html_and_css/font-size-with-rem&quot;&gt;Font sizing with rem&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;http://designshack.net/articles/typography/whats-the-deal-with-em-and-rem/&quot;&gt;What&#39;s the Deal With Em and Rem?&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- references --&gt;
+
+&lt;!-- links --&gt;
+
+</description>
+        <pubDate>Thu, 02 Apr 2015 02:10:00 +0800</pubDate>
+        <link>http://www.jinggj.me/blog/tech/2015/04/02/bootstrap-vs-foundation.html</link>
+        <guid isPermaLink="true">http://www.jinggj.me/blog/tech/2015/04/02/bootstrap-vs-foundation.html</guid>
+        
+        <category>css-framework</category>
+        
+        <category>front-end</category>
+        
+        <category>blog</category>
+        
+        
+        <category>tech</category>
+        
+      </item>
     
       <item>
         <title>Hello World!</title>
