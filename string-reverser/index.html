@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>String Reverser by 某不知名少侠木</title>
+  <style media="screen">
+    /* resets */
+
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      -webkit-appearance: none;
+    }
+    /* main style */
+
+    html {
+      font-size: 16px;
+      background-color: #f5fbe9;
+      color: #2d3b11;
+    }
+
+    .trans {
+      -moz-transition-duration: 1s;
+      -webkit-transition-duration: 1s;
+      -o-transition-duration: 1s;
+      transition-duration: 1s;
+    }
+
+    .trans-quick {
+      -moz-transition-duration: .5s;
+      -webkit-transition-duration: .5s;
+      -o-transition-duration: .5s;
+      transition-duration: .5s;
+    }
+
+    .trans-slow {
+      -moz-transition-duration: 2s;
+      -webkit-transition-duration: 2s;
+      -o-transition-duration: 2s;
+      transition-duration: 2s;
+    }
+
+    body {
+      width: 100%;
+    }
+
+    section {
+      text-align: center;
+      margin: auto;
+      margin-top: 20px;
+    }
+
+    section header {
+      padding: 5px;
+      margin-bottom: 10px;
+      font-size: 1.25em;
+    }
+
+    textarea {
+      -webkit-box-shadow: 1px 1px 6px 0px rgba(0, 0, 0, .5);
+      box-shadow: 1px 1px 6px 0px rgba(0, 0, 0, .5);
+      border-radius: 4px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      padding: 10px;
+      width: 75%;
+      height: 10rem;
+      max-width: 750px;
+      resize: none;
+      color: #2d3b11;
+    }
+
+    textarea:focus {
+      -webkit-box-shadow: 3px 3px 25px 0px rgba(0, 0, 0, .4);
+      box-shadow: 3px 3px 25px 0px rgba(0, 0, 0, .4);
+    }
+
+    #string-to-reverse {
+      background-color: #acd161;
+    }
+
+    #string-to-reverse::-webkit-input-placeholder {
+      color: #efc;
+    }
+
+    #string-to-reverse:-moz-placeholder {
+      color: #efc;
+    }
+
+    #string-to-reverse::-moz-placeholder {
+      color: #efc;
+    }
+
+    #string-to-reverse:-ms-input-placeholder {
+      color: #efc;
+    }
+
+    #reversed-string {
+      background-color: #61acd1;
+    }
+
+    #reversed-string::-webkit-input-placeholder {
+      color: #cef;
+    }
+
+    #reversed-string:-moz-placeholder {
+      color: #cef;
+    }
+
+    #reversed-string::-moz-placeholder {
+      color: #cef;
+    }
+
+    #reversed-string:-ms-input-placeholder {
+      color: #cef;
+    }
+  </style>
+</head>
+
+<body>
+  <form>
+    <section>
+      <header>
+        <label for="string-to-reverse">String</label>
+      </header>
+      <textarea name="string-to-reverse" id="string-to-reverse" class="trans-quick" value="" placeholder="string to be reversed" rows="8" cols="35" autofocus tabindex="1"></textarea>
+    </section>
+
+    <section>
+      <header>
+        <label for="reversed-string">gnirtS</label>
+      </header>
+      <textarea name="reversed-string" id="reversed-string" class="trans-quick" value="" placeholder="gnirts desrever" rows="8" cols="35" tabindex="2"></textarea>
+    </section>
+  </form>
+  <script type="text/javascript">
+    (function() {
+      var oriStringElm = document.getElementById('string-to-reverse');
+      var reversedStringElm = document.getElementById('reversed-string');
+
+      oriStringElm.addEventListener('keyup', function(evt) {
+        if (!evt.ctrlKey && !evt.metaKey && !evt.shiftKey) {
+          reversedStringElm.value = oriStringElm.value.split('').reverse().join('');
+        }
+      });
+      reversedStringElm.addEventListener('keyup', function(evt) {
+        if (!evt.ctrlKey && !evt.metaKey && !evt.shiftKey) {
+          oriStringElm.value = reversedStringElm.value.split('').reverse().join('');
+        }
+      });
+
+
+      oriStringElm.addEventListener('change', function(evt) {
+        setTimeout(function() {
+          oriStringElm.dispatchEvent(new KeyboardEvent('keyup'));
+        }, 0);
+      });
+      reversedStringElm.addEventListener('change', function(evt) {
+        setTimeout(function() {
+          reversedStringElm.dispatchEvent(new KeyboardEvent('keyup'));
+        }, 0);
+      });
+
+      oriStringElm.addEventListener('paste', function(evt) {
+        setTimeout(function() {
+          oriStringElm.dispatchEvent(new KeyboardEvent('keyup'));
+        }, 0);
+      });
+      reversedStringElm.addEventListener('paste', function(evt) {
+        setTimeout(function() {
+          reversedStringElm.dispatchEvent(new KeyboardEvent('keyup'));
+        }, 0)
+      });
+    }());
+  </script>
+</body>
+
+</html>
