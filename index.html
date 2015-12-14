@@ -3,26 +3,107 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   <title>By 某不知名少侠木</title>
   <!-- <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css"> -->
   <style>
+    * {
+      box-sizing: border-box;
+      -webkit-appearance: none;
+    }
+
+    html {
+      font-size: 16px;
+      background-color: white;
+      color: #2d3b11;
+    }
+
+    .trans {
+      -moz-transition-duration: 1s;
+      -webkit-transition-duration: 1s;
+      -o-transition-duration: 1s;
+      transition-duration: 1s;
+    }
+
+    .trans-quicker {
+      -moz-transition-duration: .25s;
+      -webkit-transition-duration: .25s;
+      -o-transition-duration: .25s;
+      transition-duration: .25s;
+    }
+
+    .trans-quick {
+      -moz-transition-duration: .5s;
+      -webkit-transition-duration: .5s;
+      -o-transition-duration: .5s;
+      transition-duration: .5s;
+    }
+
+    .trans-slow {
+      -moz-transition-duration: 2s;
+      -webkit-transition-duration: 2s;
+      -o-transition-duration: 2s;
+      transition-duration: 2s;
+    }
+
     body {
       font-family: 'Ubuntu', sans-serif, 'STXingKai', 'STKaiti', 'Microsoft YaHei';
+      margin: 0;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    body > header {
+      text-align: center;
+    }
+
+    nav a {
+      -webkit-box-shadow: 1px 1px 6px 0px rgba(0, 0, 0, .5);
+      box-shadow: 1px 1px 6px 0px rgba(0, 0, 0, .5);
+      display: inline-block;
+      padding: .5rem;
+      margin: 0 .5rem 2rem;
+      width: 9rem;
+      text-align: center;
+      height: 6rem;
+      text-decoration: none;
+      border: 1px solid #f6f655;
+      background-color: #c7f075;
+      color: #2d3b11;
+      border-radius: 4px 4px 1rem 1rem;
+      vertical-align: text-bottom;
+    }
+
+    nav a:visited {
+      border: 1px dotted #acd161;
+    }
+
+    nav a:hover {
+      -webkit-box-shadow: 3px 3px 25px 0px rgba(0, 0, 0, .4);
+      box-shadow: 3px 3px 25px 0px rgba(0, 0, 0, .4);
+      border: 1px solid #ffc;
+    }
+
+    #under-construction-img {
+      width: 90%;
+      max-width: 500px;
     }
   </style>
 </head>
 
 <body>
-  <nav>
-    <a href="blog" target="_blank">Blog</a>
-    <a href="string-reverser" target="_blank">String Reverser</a>
-    <a href="press-me" target="_blank">How long is your 1 second?</a>
-    <a href="palettes" target="_blank">Palettes - grabbed from everywhere</a>
-  </nav>
+  <header>
+    <nav>
+      <a class="trans-quicker" href="blog" target="_blank">Blog</a>
+      <a class="trans-quicker" href="string-reverser" target="_blank">String Reverser</a>
+      <a class="trans-quicker" href="press-me" target="_blank">How long is your 1 second?</a>
+      <a class="trans-quicker" href="palettes" target="_blank">Palettes - grabbed from everywhere</a>
+    </nav>
+  </header>
   <section>
-    <img src="resources/underconstruction1.jpg" alt="Under construction..." width="500">
+    <img id="under-construction-img" src="resources/underconstruction1.jpg" alt="Under construction..." width="500">
   </section>
   <section>
     <article>
