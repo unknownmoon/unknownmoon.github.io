@@ -5,9 +5,90 @@
     <description>*This site is sitll under construction.*</description>
     <link>http://www.jinggj.me/blog/</link>
     <atom:link href="http://www.jinggj.me/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 28 Jul 2016 15:29:25 +0800</pubDate>
-    <lastBuildDate>Thu, 28 Jul 2016 15:29:25 +0800</lastBuildDate>
+    <pubDate>Fri, 29 Jul 2016 15:06:14 +0800</pubDate>
+    <lastBuildDate>Fri, 29 Jul 2016 15:06:14 +0800</lastBuildDate>
     <generator>Jekyll v3.2.0</generator>
+    
+      <item>
+        <title>Android Development Trial</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;TL;DR&lt;/p&gt;
+
+  &lt;p&gt;I learnt some of the Android approaches that I missed in the projects I've been working on, such as I18n, at the same time, I also find that the documentation of Android is kind of terrible, especially when you only want to use the latest version of Android APIs &lt;em&gt;without&lt;/em&gt; backward compatibility.&lt;/p&gt;
+
+  &lt;p&gt;After finish this little &lt;em&gt;A humanitarian APP against sound activated light switches in some scenes&lt;/em&gt; app, I found that, even though I've got the functionalities I want, however, I wasn't in the &lt;strong&gt;&lt;em&gt;correct&lt;/em&gt;&lt;/strong&gt; way of doing Android development, for example, I didn't use the layouts and components properly.. will do better maybe the next time :P&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;About 2 months ago, when I was on vacation, I spent about 5 days (say 8 work hrs/day) to try Android development, for fun, and, of course, for some benifits.&lt;/p&gt;
+
+&lt;p&gt;The app is named &quot;&lt;a href=&quot;https://github.com/unknownmoon/android-cry-for-light&quot;&gt;Cry for Light&lt;/a&gt;&quot;, which is &quot;A humanitarian APP against sound activated light switches in some scenes&quot;. Literally, it cries when the brightness is low :P&lt;/p&gt;
+
+&lt;p&gt;Why should this app exist?&lt;/p&gt;
+
+&lt;h3 id=&quot;the-story&quot;&gt;The Story&lt;/h3&gt;
+
+&lt;p&gt;The story starts from that our company replaced some light switches of the pantries to &lt;em&gt;sound activated light switches&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the pantries, there're several water coolers, to provide cool and especially hot water, and in one of the pantries, there are some tables for having meals, along with a foosball table (that's great!).&lt;/p&gt;
+
+&lt;p&gt;As you probably have been aware of, it definitely takes sometime to fulfill a bottle with &lt;em&gt;hot&lt;/em&gt; water, and takes more time to finish a meal or play foosball.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, the new lights will only be triggered by a relatively louder voice, and then keep on for about 1 minitue or so. They're going to be &lt;em&gt;off&lt;/em&gt; anyway before the next turning on, even if the loud voice is still there… (great job right?)&lt;/p&gt;
+
+&lt;p&gt;Hence if one washes one's cup before fulfill hot water, it's highly likely the light will be off during fulfilling the hot water, after the light is off, we can barely see things, so the hot water might run out of one's cup if one don't stop at the proper time… sounds dangerous right?&lt;/p&gt;
+
+&lt;p&gt;That would be even &lt;strong&gt;better&lt;/strong&gt; if you're in a queue to wash your cup or fulfill water, not to mention the &lt;em&gt;dinner&lt;/em&gt; or &lt;em&gt;foosball&lt;/em&gt; stuff..&lt;/p&gt;
+
+&lt;p&gt;OK, even we're in such a smart company, as a developer, we should make our own lives easy, right?&lt;/p&gt;
+
+&lt;p&gt;Thus, the requirements are really straightforward: since we have smartphones with light sensors and speakers, why not just monitor the brightness of the env and play sound once it turns dark? As long as it turns dark anyway…&lt;/p&gt;
+
+&lt;h3 id=&quot;learn-android-development&quot;&gt;Learn Android Development&lt;/h3&gt;
+
+&lt;p&gt;I was thinking to develop a web app + using Chrome routine, but just accidently found some Android materials, so why not I try something new? A bonus that I was using Nexus 5X :P&lt;/p&gt;
+
+&lt;p&gt;The Android development toolchains are awesome now, I mean the Android Studio turned from eclipse-based to intellij-idea-based. I got the env set up in my MacBook really easily.&lt;/p&gt;
+
+&lt;p&gt;As I didn't really want to dig into Android development, I decided to &lt;em&gt;support Android 6+ on Nexus 5X only&lt;/em&gt;, so that it would be easier and quicker to get started and achieve my goals, however, when I went to the documentation, I was kind of lost: how can I find the complete set of APIs/Components I need, specifically the Android approaches using only the latest APIs?&lt;/p&gt;
+
+&lt;p&gt;If you've seen the documentation of Android, you'll find that apart from the basic concepts, most of the examples are kind of &lt;em&gt;backward compatible&lt;/em&gt;. That's great, for the others, but not for me. I don't really want the &lt;code class=&quot;highlighter-rouge&quot;&gt;v7 appcompact&lt;/code&gt; lib or &lt;code class=&quot;highlighter-rouge&quot;&gt;v4 appcompact&lt;/code&gt; lib, I only want the latest!&lt;/p&gt;
+
+&lt;p&gt;Yes I can use the latest libs only anyway, but then the documentation becomes less helpful and harder to find what a &lt;em&gt;new&lt;/em&gt; android developer need… that's the terrible part…&lt;/p&gt;
+
+&lt;h3 id=&quot;what-i-learn&quot;&gt;What I learn&lt;/h3&gt;
+
+&lt;p&gt;I learnt the basic concepts such as intents, activities, services, learnt how to layout and use the assets, learnt how to use notifications and perferences… a lot of Android fundamentals (even though I've forgotten a lot of them now LOL), but the most impressive part may be how Android works with the resources.&lt;/p&gt;
+
+&lt;p&gt;In my previous work projects, I don't think we worried a lot about &lt;strong&gt;Theme&lt;/strong&gt;, &lt;strong&gt;I18n&lt;/strong&gt;, &lt;strong&gt;Responsive&lt;/strong&gt;(i.e layouts and different image assests for different views), and an important one, &lt;strong&gt;Performance&lt;/strong&gt;. We didn't do a lot of &lt;strong&gt;Test&lt;/strong&gt; too… sounds bad :(&lt;/p&gt;
+
+&lt;p&gt;In Android, it suggests that one should always externalise the strings, numbers or other values, for easier I18n and more, and by doing that, say externalise the colours, one can change the colour scheme very easily.&lt;/p&gt;
+
+&lt;p&gt;Android also provides a mechanism to load different resources for different devices (DPI, screen size or so). This is a non-trivial part of improving the user experiences on mobile devices. &lt;em&gt;Responsive&lt;/em&gt; is always mentioned by our team, but rarely turned into practices.&lt;/p&gt;
+
+&lt;p&gt;Another important reminder is the &lt;em&gt;Performance&lt;/em&gt;. In the guide of Android, it always highlights what should be considered in order to improve the performance. Such as should not leave a service running whenever unnecessary.&lt;/p&gt;
+
+&lt;p&gt;After reading the parts related to performance, I finally understand why my phone is so slow after installed a lot of Chinese Android apps, even though I don't open a lot by myself.&lt;/p&gt;
+
+&lt;p&gt;Most of Chinese apps are doing really great job to always keep their services UP, which occupy a lot of memory of the device.&lt;/p&gt;
+
+&lt;p&gt;Regarding the performance, even though our devices are getting better and better nowadays, we should not rely on that &quot;the user devices should be capable for that&quot;, since if the developers of every app think like the same, our devices are dying anyway…&lt;/p&gt;
+
+&lt;h3 id=&quot;well&quot;&gt;Well…&lt;/h3&gt;
+
+&lt;p&gt;Actually, I also learnt that I should focus more on what I'm doing, web development, and improve my shortages such as mobile web, performance, responsive, in order to make some really good apps :P&lt;/p&gt;
+</description>
+        <pubDate>Thu, 28 Jul 2016 19:00:00 +0800</pubDate>
+        <link>http://www.jinggj.me/blog/blog/2016/07/28/android-development-trial.html</link>
+        <guid isPermaLink="true">http://www.jinggj.me/blog/blog/2016/07/28/android-development-trial.html</guid>
+        
+        <category>android</category>
+        
+        <category>blog</category>
+        
+        
+        <category>blog</category>
+        
+      </item>
     
       <item>
         <title>Bootstrap 3 v.s. Foundation 5</title>
@@ -60,8 +141,8 @@
 
 </description>
         <pubDate>Thu, 02 Apr 2015 02:10:00 +0800</pubDate>
-        <link>http://www.jinggj.me/blog/others/tech/2015/04/02/bootstrap-vs-foundation.html</link>
-        <guid isPermaLink="true">http://www.jinggj.me/blog/others/tech/2015/04/02/bootstrap-vs-foundation.html</guid>
+        <link>http://www.jinggj.me/blog/tech/2015/04/02/bootstrap-vs-foundation.html</link>
+        <guid isPermaLink="true">http://www.jinggj.me/blog/tech/2015/04/02/bootstrap-vs-foundation.html</guid>
         
         <category>css-framework</category>
         
@@ -69,8 +150,6 @@
         
         <category>blog</category>
         
-        
-        <category>others</category>
         
         <category>tech</category>
         
